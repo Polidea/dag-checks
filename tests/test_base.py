@@ -18,7 +18,7 @@ class TestBaseCheck:
 CHECKING: BaseCheck
 Everything is ok!
 """
-        assert capsys.readouterr().out == expected
+        assert expected in capsys.readouterr().out
 
     @mock.patch("dag_checks.base.BaseCheck.get_errors")
     def test_check(self, mock_check, capsys):  # pylint: disable=no-self-use
@@ -30,4 +30,4 @@ CHECKING: BaseCheck
 CHECK FAILED!
 An error when checking
 """
-        assert capsys.readouterr().out == expected
+        assert expected in capsys.readouterr().out

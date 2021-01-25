@@ -16,7 +16,9 @@ def reset_db_fixture():
     from airflow.utils.db import resetdb
 
     try:
-        resetdb(None)  # Airflow 1.10
+        # Airflow 1.10
+        resetdb(None)  # pylint: disable=too-many-function-args
     except TypeError:
+        # Airflow 2.0
         resetdb()  # pylint: disable=no-value-for-parameter
     yield
