@@ -15,5 +15,8 @@ os.environ["AIRFLOW__CORE__SQL_ALCHEMY_CONN"] = "sqlite:///{}/airflow.db".format
 def reset_db_fixture():
     from airflow.utils.db import resetdb
 
-    resetdb(None)
+    try:
+        resetdb(None)  # Airflow 1.10
+    except TypeError:
+        resetdb()  # pylint: disable=no-value-for-parameter
     yield
